@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# Проект на React.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Минимальная конфигурация для запуска пустого приложения.
 
-## Available Scripts
+1. Установка node.js + npm.
+2. Установка React через терминал: npx create-react-app "project_name"
+3. Команда для запуска в терминале: npm start
+4. В файле index.html очищаем все, кроме базовой структуры и <div id="root"></div>
+5. В папке src удаляем все файлы кроме index.js и App.js
 
-In the project directory, you can run:
+Корректируем файлы:
 
-### `npm start`
+### Файл index.js:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <App />
+);
+```
 
-### `npm test`
+### Файл App.js:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+import React from "react";
 
-### `npm run build`
+function App() {
+  return <div className="App">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  </div>;
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+export default App;
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Минимальная конфигурация для запуска пустого приложения готова.
 
-### `npm run eject`
+# План реализации проекта:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 1. КОМПОНЕНТ APP. РАБОТА С СОСТОЯНИЕМ. UseState.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    1.	Работа с файлом App.js
+    2.	Создать две кнопки для инкремента и декремента
+    3.	Создать переменную в которой будет хранится конечный вариант. let likes
+    4.	Повесить слушатель события на кнопку инкремента, где будет функция increment
+    5.	Повесить слушатель события на кнопку декремента, где будет функция decrement
+    6.	Реализовать функцию increment
+    7.	Реализовать функцию decrement
+    8.	Явное изменение компонента с помощью Хука useState в функциях increment и decrement
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 2. УПРАВЛЯЕМЫЙ ИНПУТ.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    1.	Создаем состояние для input.
+    2.	Создадим заголовок со значением из состояния input'a.
+    3.	Создадим input c value равным состоянию.
+    4.	Вешаем событие onChange на input.
+    5.	В событии onChange будем вызывать callback, который будет устанавливать состояние value с помощью информации из DOM-элемента event.target.value .
 
-## Learn More
+## 3. ФУНКЦИОНАЛЬНЫЕ КОМПОНЕНТЫ.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    1.	Создаем в папке src папку для компонентов components.
+    2.	Создаем внутри файл Counter.jsx для счетчика.
+    3.	Создаем шаблон React компонента.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+ import React from "react";
 
-### Code Splitting
+ const Component = () => {
+     return (
+       <div>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+       </div>;
+   )
+ };
 
-### Analyzing the Bundle Size
+export default Component;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    4.	Переносим туда код касающийся счетчика из App.js .
+    5.	Делаем нужные импорты.
+    6.	Создаем внутри файл ControlledInput.jsx для счетчика .
+    7.	Создаем шаблон React компонента.
+    8.	Переносим туда код касающийся инпута из App.js .
+    9.	Делаем нужные импорты.
+    10.	Добавляем созданные компоненты в App.js внутырь div оба компонента <Counter />, <ControlledInput />.
